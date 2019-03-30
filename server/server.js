@@ -16,6 +16,7 @@ const connection = mysql.createConnection({
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static('public'));
 app.use('/news', news(connection));
 
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 import {fetchNews} from "../../store/action/newsActions";
+import NewsItem from "../../components/NewsItem/NewsItem";
 
 class News extends Component {
 
@@ -10,14 +11,23 @@ class News extends Component {
     }
 
     render() {
-        console.log(this.props.news);
+
         return (
             <div className="py-3">
                 <div className="d-flex justify-content-between align-items-center mb-4">
                     <h1>Posts</h1>
-                    <NavLink to="/news/add" className="btn btn-outline-success">Add new post</NavLink>
+                    <NavLink to="/news/add" className="btn btn-success">Add new post</NavLink>
                 </div>
-                news will be here
+
+                {this.props.news.map(newsItem => (
+                    <NewsItem
+                        key={newsItem.id}
+                        image={newsItem.image}
+                        title={newsItem.title}
+                        published_at={newsItem.published_at}
+                    />
+                ))}
+
             </div>
         );
     }
