@@ -43,6 +43,40 @@ const createRouter = connection => {
         });
     });
 
+    router.post('/', upload.single('image'), (req, res) => {
+        const newsItem = req.body;
+        newsItem.published_at = new Date().toISOString();
+
+        if (req.file) {
+            newsItem.image = req.file.filename;
+        }
+
+        connection.query('INSERT INTO `news` (`title`, `description`, `image`, `published_at`) VALUES (?, ?, ?, ?)',
+            [
+                newsItem.title,
+                newsItem.description,
+                newsItem.image,
+                newsItem.published_at,
+            ],
+            (error, results) => {
+                if (error) {
+                    return res.status(500).send({error: error.sqlMessage});
+                }
+
+                res.send({...newsItem, id: results.insertId});
+            });
+    });
+
+    router.delete('/:id', (req, res) => {
+        connection.query('DELETE FROM `news` WHERE `id` = ?', req.params.id, (error, results) => {
+            if (error) {
+                return res.status(500).send({error: error.sqlMessage});
+            }
+
+            res.send({message: 'News item deleted!'});
+        });
+    });
+
 
     return router;
 };
