@@ -1,4 +1,5 @@
 import {
+    FETCH_COMMENTS_SUCCESS,
     FETCH_DATA_FAILURE,
     FETCH_DATA_REQUEST,
     FETCH_NEWS_ITEM_SUCCESS,
@@ -6,13 +7,14 @@ import {
 } from "../actions/actionTypes";
 
 const initialState = {
-    items: [],
-    item: {},
+    newsList: [],
+    newsItem: {},
+    comments: [],
     error: null,
     loading: true
 };
 
-const newsReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_DATA_REQUEST:
             return {
@@ -30,14 +32,21 @@ const newsReducer = (state = initialState, action) => {
         case FETCH_NEWS_SUCCESS:
             return {
                 ...state,
-                items: action.news,
+                newsList: action.newsList,
                 loading: false,
             };
 
         case FETCH_NEWS_ITEM_SUCCESS:
             return {
                 ...state,
-                item: action.newsItem,
+                newsItem: action.newsItem,
+                loading: false,
+            };
+
+        case FETCH_COMMENTS_SUCCESS:
+            return {
+                ...state,
+                comments: action.comments,
                 loading: false,
             };
 
@@ -46,4 +55,4 @@ const newsReducer = (state = initialState, action) => {
     }
 };
 
-export default newsReducer;
+export default reducer;

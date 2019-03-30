@@ -25,8 +25,6 @@ class AddNews extends Component {
 
     submitHandler = event => {
         event.preventDefault();
-        console.log(this.state);
-
         const formData = new FormData();
 
         Object.keys(this.state).forEach(key => {

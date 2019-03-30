@@ -3,7 +3,7 @@ import {apiURL} from "../../constants";
 
 const NewsItem = props => {
     return (
-        <div className="my-3">
+        <div className="mt-3 mb-5">
             <h1>{props.title}</h1>
             <small className="d-block mb-3">{props.published_at}</small>
             {props.image && props.image !== 'null'

@@ -17,7 +17,7 @@ export const addDataFailure = error => ({type: ADD_DATA_FAILURE, error});
 export const deleteDataRequest = () => ({type: DELETE_DATA_REQUEST});
 export const deleteDataFailure = error => ({type: DELETE_DATA_FAILURE, error});
 
-export const fetchNewsSuccess = news => ({type: FETCH_NEWS_SUCCESS, news});
+export const fetchNewsSuccess = newsList => ({type: FETCH_NEWS_SUCCESS, newsList});
 export const fetchNewsItemSuccess = newsItem => ({type: FETCH_NEWS_ITEM_SUCCESS, newsItem});
 export const addNewsItemSuccess = () => ({type: ADD_NEWS_ITEM_SUCCESS});
 export const deleteNewsItemSuccess = () => ({type: DELETE_NEWS_ITEM_SUCCESS});
@@ -37,7 +37,7 @@ export const fetchNewsItem = id => {
     return dispatch => {
         dispatch(fetchDataRequest());
 
-        axios.get(`/news/${id}`).then(
+        return axios.get(`/news/${id}`).then(
             response => dispatch(fetchNewsItemSuccess(response.data)),
             error => dispatch(fetchDataFailure(error))
         );

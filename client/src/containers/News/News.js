@@ -18,6 +18,19 @@ class News extends Component {
     };
 
     render() {
+        if (this.props.error) {
+            return (
+                <div className="alert alert-danger">
+                    {this.props.error.error}
+                </div>
+            )
+        }
+
+        if (this.props.loading) {
+            return <p>loading...</p>
+        }
+
+
         return (
             <div className="py-3">
                 <div className="d-flex justify-content-between align-items-center mb-4">
@@ -25,7 +38,7 @@ class News extends Component {
                     <NavLink to="/news/add" className="btn btn-success">Add new post</NavLink>
                 </div>
 
-                {this.props.news.map(newsItem => (
+                {this.props.newsList.map(newsItem => (
                     <NewsListItem
                         key={newsItem.id}
                         id={newsItem.id}
@@ -41,7 +54,8 @@ class News extends Component {
 }
 
 const mapStateToProps = state => ({
-    news: state.news.items,
+    newsList: state.newsList,
+    loading: state.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
