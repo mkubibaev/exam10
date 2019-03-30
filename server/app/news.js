@@ -77,13 +77,7 @@ const createRouter = connection => {
         });
     });
 
-
     return router;
 };
-
-
-
-
-
 
 module.exports = createRouter;
