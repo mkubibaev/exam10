@@ -6,9 +6,7 @@ const NewsListItem = props => (
     <div className="card">
         <div className="card-body d-flex justify-content-between mb-2">
             {props.image
-                ? <div className="news-img">
-                    <img src={`${apiURL}/uploads/${props.image}`} alt=""/>
-                </div>
+                ? <img src={`${apiURL}/uploads/${props.image}`} className="news-img-sm" alt={props.title}/>
                 : null
             }
 
