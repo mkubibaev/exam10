@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 const NewsListItem = props => (
     <div className="card mb-2">
         <div className="card-body">
-            {props.image
+            {props.image && props.image !== 'null' //сохранется строка 'null' у formData.append()
                 ? <img src={`${apiURL}/uploads/${props.image}`} className="news-img-sm" alt={props.title}/>
                 : null
             }
@@ -16,8 +16,14 @@ const NewsListItem = props => (
             </div>
         </div>
         <div className="card-footer d-flex justify-content-between">
-            <button type="button" className="btn btn-sm btn-outline-danger">Delete</button>
-            <NavLink to={`/news/${props.id}`} className="btn btn-sm btn-outline-info">Readmore</NavLink>
+            <button
+                type="button"
+                className="btn btn-sm btn-outline-danger"
+                onClick={props.onDelete}
+            >
+                Delete
+            </button>
+            <NavLink to={`/news/${props.id}`} className="btn btn-sm btn-info">Readmore</NavLink>
         </div>
     </div>
 );
