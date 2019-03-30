@@ -1,7 +1,13 @@
-import {FETCH_DATA_FAILURE, FETCH_DATA_REQUEST, FETCH_NEWS_SUCCESS} from "../action/actionTypes";
+import {
+    FETCH_DATA_FAILURE,
+    FETCH_DATA_REQUEST,
+    FETCH_NEWS_ITEM_SUCCESS,
+    FETCH_NEWS_SUCCESS
+} from "../actions/actionTypes";
 
 const initialState = {
     items: [],
+    item: {},
     error: null,
     loading: true
 };
@@ -25,6 +31,13 @@ const newsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 items: action.news,
+                loading: false,
+            };
+
+        case FETCH_NEWS_ITEM_SUCCESS:
+            return {
+                ...state,
+                item: action.newsItem,
                 loading: false,
             };
 

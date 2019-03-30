@@ -1,28 +1,13 @@
 import React from 'react';
-import {apiURL} from "../../constants";
-import {NavLink} from "react-router-dom";
 
-const NewsItem = props => (
-    <div className="card">
-        <div className="card-body d-flex justify-content-between mb-2">
-            {props.image
-                ? <div className="news-img">
-                    <img src={`${apiURL}/uploads/${props.image}`} alt=""/>
-                </div>
-                : null
-            }
-
-            <div className="news-text">
-                <h4>{props.title}</h4>
-                <small>At {props.published_at}</small>
-            </div>
+const NewsItem = props => {
+    return (
+        <div className="my-3">
+            <h1>{props.title}</h1>
+            <small className="d-block mb-3">{props.published_at}</small>
+            <p>{props.description}</p>
         </div>
-        <div className="card-footer d-flex justify-content-between">
-            <button type="button" className="btn btn-sm btn-outline-danger">Delete</button>
-            <NavLink to="/" className="btn btn-sm btn-outline-info">Readmore</NavLink>
-        </div>
-    </div>
-);
-
+    );
+};
 
 export default NewsItem;

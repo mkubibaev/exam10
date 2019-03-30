@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
-import {fetchNews} from "../../store/action/newsActions";
-import NewsItem from "../../components/NewsItem/NewsItem";
+import {fetchNews} from "../../store/actions/newsActions";
+import NewsListItem from "../../components/NewsListItem/NewsListItem";
 
 class News extends Component {
 
@@ -20,8 +20,9 @@ class News extends Component {
                 </div>
 
                 {this.props.news.map(newsItem => (
-                    <NewsItem
+                    <NewsListItem
                         key={newsItem.id}
+                        id={newsItem.id}
                         image={newsItem.image}
                         title={newsItem.title}
                         published_at={newsItem.published_at}
