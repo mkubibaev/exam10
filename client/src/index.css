@@ -17,6 +17,8 @@ h4 {
   display: block;
   max-width: 150px;
   height: auto;
+  float: left;
+  margin-right: 15px;
 }
 
 .news-img-lg {

@@ -50,7 +50,7 @@ const createRouter = connection => {
         if (req.file) {
             newsItem.image = req.file.filename;
         }
-
+        
         connection.query('INSERT INTO `news` (`title`, `description`, `image`, `published_at`) VALUES (?, ?, ?, ?)',
             [
                 newsItem.title,

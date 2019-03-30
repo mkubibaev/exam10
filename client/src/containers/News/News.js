@@ -28,7 +28,6 @@ class News extends Component {
                         published_at={newsItem.published_at}
                     />
                 ))}
-
             </div>
         );
     }

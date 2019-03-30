@@ -3,8 +3,8 @@ import {apiURL} from "../../constants";
 import {NavLink} from "react-router-dom";
 
 const NewsListItem = props => (
-    <div className="card">
-        <div className="card-body d-flex justify-content-between mb-2">
+    <div className="card mb-2">
+        <div className="card-body">
             {props.image
                 ? <img src={`${apiURL}/uploads/${props.image}`} className="news-img-sm" alt={props.title}/>
                 : null

@@ -1,11 +1,23 @@
 import axios from '../../axios-api';
-import {FETCH_DATA_FAILURE, FETCH_DATA_REQUEST, FETCH_NEWS_ITEM_SUCCESS, FETCH_NEWS_SUCCESS} from "./actionTypes";
+import {
+    ADD_DATA_FAILURE,
+    ADD_DATA_REQUEST,
+    ADD_NEWS_ITEM_SUCCESS,
+    FETCH_DATA_FAILURE,
+    FETCH_DATA_REQUEST,
+    FETCH_NEWS_ITEM_SUCCESS,
+    FETCH_NEWS_SUCCESS
+} from "./actionTypes";
 
 
 export const fetchDataRequest = () => ({type: FETCH_DATA_REQUEST});
 export const fetchDataFailure = error => ({type: FETCH_DATA_FAILURE, error});
+export const addDataRequest = () => ({type: ADD_DATA_REQUEST});
+export const addDataFailure = error => ({type: ADD_DATA_FAILURE, error});
+
 export const fetchNewsSuccess = news => ({type: FETCH_NEWS_SUCCESS, news});
 export const fetchNewsItemSuccess = newsItem => ({type: FETCH_NEWS_ITEM_SUCCESS, newsItem});
+export const addNewsItemSuccess = () => ({type: ADD_NEWS_ITEM_SUCCESS});
 
 export const fetchNews = () => {
     return dispatch => {
@@ -27,4 +39,19 @@ export const fetchNewsItem = id => {
             error => dispatch(fetchDataFailure(error))
         );
     }
+};
+
+export const addNewsItem = (newsItem, history) => {
+    return dispatch => {
+        dispatch(addDataRequest());
+
+        axios.post('/news', newsItem).then(
+            () => {
+                dispatch(addNewsItemSuccess());
+                history.push('/');
+            },
+            error => dispatch(addDataFailure(error))
+        );
+    }
+
 };
